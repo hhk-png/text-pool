@@ -5,23 +5,27 @@ interface Props {
   containerWidth?: number;
   containerHeight?: number;
   fontsize?: number;
+  contentColor?: string;
+  contentBgc?: string;
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  containerWidth: 600,
-  containerHeight: 200,
-  fontsize: 20,
-})
 
 const {
   containerWidth: WIDTH,
   containerHeight: HEIGHT,
-  fontsize: FONTSIZE
-} = props
+  fontsize: FONTSIZE,
+  contentColor,
+  contentBgc
+} = withDefaults(defineProps<Props>(), {
+  containerWidth: 600,
+  containerHeight: 200,
+  fontsize: 20,
+  contentColor: "rgba(255, 255, 255, 0.956)",
+  contentBgc: "rgba(0, 0, 0, 0.759)"
+})
 
 
 // inner
-const PADDING = 5
+const PADDING = 0
 const NUMOFHORIZONTAL = Math.floor((WIDTH - PADDING * 2) / (FONTSIZE * 0.6))
 const NUMOFVERTICAL = Math.floor((HEIGHT - PADDING * 2) / (FONTSIZE * 1.5)) - 1
 
@@ -49,7 +53,12 @@ const strStyle = {
   height: HEIGHT + "px",
   padding: PADDING + "px",
   fontSize: FONTSIZE + "px",
+  color: contentColor
 };
+
+const spanStyle = {
+  backgroundColor: contentBgc
+}
 
 defineExpose({ addChar })
 
@@ -58,13 +67,12 @@ defineExpose({ addChar })
 
 <template>
   <div :style="strStyle" class="str">
-    <span v-for="(text, index) in strs" :key="text + index" class="bgc-yellow">{{ text }}</span>
+    <span v-for="(text, index) in strs" :key="text + index" :style="spanStyle">{{ text }}</span>
   </div>
 </template>
 
 <style scoped>
 .str {
-  background-color: antiquewhite;
   box-sizing: border-box;
 }
 
@@ -73,6 +81,6 @@ defineExpose({ addChar })
 }
 
 .bgc-yellow {
-  background-color: yellow;
+  background-color: rgba(0, 0, 0, 0.759);
 }
 </style>
