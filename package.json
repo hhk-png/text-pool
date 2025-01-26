@@ -1,7 +1,7 @@
 {
   "name": "text-pool",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/test-utils": "^2.4.4",
+    "bumpp": "^10.0.1",
     "happy-dom": "^13.8.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
